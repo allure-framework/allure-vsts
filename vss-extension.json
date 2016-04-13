@@ -1,0 +1,36 @@
+{
+  "manifestVersion": 1,
+  "id": "allure-extension",
+  "version": "0.1.0",
+  "name": "Allure",
+  "description": "Allure extension for Team Services",
+  "publisher": "Molecula",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "categories": [
+    "Build and test"
+  ],
+  "files": [
+    {
+      "path": "Allure"
+    }
+  ],
+  "icons": {
+    "default": "images/logo.png"
+  },
+  "contributions": [
+    {
+      "id": "allure-build-task",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Allure"
+      }
+    }
+  ]
+}
