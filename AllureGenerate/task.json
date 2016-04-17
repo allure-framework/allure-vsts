@@ -1,0 +1,54 @@
+{
+  "id": "5c975f9d-1c3a-469f-b7c2-8907bf3eacfb",
+  "name": "AllureGenerate",
+  "friendlyName": "Allure Generate",
+  "description": "Generate Allure report from tests result",
+  "helpMarkDown": "[More Information](https://github.com/allure-framework/allure-core/wiki)",
+  "category": "Test",
+  "visibility": [
+    "Test"
+  ],
+  "author": "Molecula",
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "demands": [
+    "java"
+  ],
+  "minimumAgentVersion": "1.91.0",
+  "inputs": [
+    {
+      "name": "allureRunner",
+      "type": "filePath",
+      "label": "Allure runner",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Path to allure-commandline executor"
+    },
+    {
+      "name": "resultsDir",
+      "type": "filePath",
+      "label": "Results directory",
+      "defaultValue": "allure-results",
+      "required": true,
+      "helpMarkDown": "Path test results"
+    },
+    {
+      "name": "resultsDir",
+      "type": "filePath",
+      "label": "Target directory",
+      "defaultValue": "allure-report",
+      "required": true,
+      "helpMarkDown": "Directory to write test report"
+    }
+  ],
+  "instanceNameFormat": "",
+  "execution": {
+    "Node": {
+      "target": "gradletask.js",
+      "argumentFormat": ""
+    }
+  }
+}
