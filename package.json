@@ -1,0 +1,16 @@
+{
+  "name": "allure-ext-for-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "Agent.Tasks": "microsoft/vso-agent-tasks",
+    "allure-commandline": "^1.4.22-1",
+    "vsts-task-lib": "^0.7.0"
+  }
+}

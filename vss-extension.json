@@ -1,35 +1,35 @@
 {
   "manifestVersion": 1,
-  "id": "allure-extension",
-  "version": "0.1.0",
-  "name": "Allure",
-  "description": "Allure extension for Team Services",
-  "publisher": "Molecula",
+  "id": "allure-report",
+  "name": "Publish Allure report",
+  "version": "0.0.1",
+  "publisher": "molecula",
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"
     }
   ],
+  "description": "Publish test results in Allure report format",
   "categories": [
-    "Build and test"
-  ],
-  "files": [
-    {
-      "path": "Allure"
-    }
+    "Test"
   ],
   "icons": {
-    "default": "images/logo.png"
+    "default": "extension-icon.png"
   },
+  "files": [
+    {
+      "path": "AllureGenerate"
+    }
+  ],
   "contributions": [
     {
-      "id": "allure-build-task",
+      "id": "allure-generate",
       "type": "ms.vss-distributed-task.task",
       "targets": [
         "ms.vss-distributed-task.tasks"
       ],
       "properties": {
-        "name": "Allure"
+        "name": "AllureGenerate"
       }
     }
   ]
