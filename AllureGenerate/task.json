@@ -47,7 +47,7 @@
   "instanceNameFormat": "",
   "execution": {
     "Node": {
-      "target": "gradletask.js",
+      "target": "alluregenerate.js",
       "argumentFormat": ""
     }
   }
