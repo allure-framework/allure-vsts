@@ -26,6 +26,8 @@ tl.debug(result.stdout);
 tl.debug(result.stderr);
 
 if (!result.code) {
+    // TODO: publish artifact like it described here
+    // https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/PublishBuildArtifacts/publishbuildartifacts.ts
     new tl.TestPublisher('Allure').publish(targetDir, true, "", "", "", true);
 }
 

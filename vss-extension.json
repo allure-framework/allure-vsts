@@ -19,6 +19,10 @@
   "files": [
     {
       "path": "AllureGenerate"
+    },
+    {
+      "path": "AllureReport",
+      "addressable": true
     }
   ],
   "contributions": [
@@ -30,6 +34,17 @@
       ],
       "properties": {
         "name": "AllureGenerate"
+      }
+    },
+    {
+      "id": "allure-report",
+      "type": "ms.vss-build-web.build-results-tab",
+      "targets": [
+        "ms.vss-build-web.build-results-view"
+      ],
+      "properties": {
+        "name": "Allure Report",
+        "uri": "AllureReport/index.html"
       }
     }
   ]
