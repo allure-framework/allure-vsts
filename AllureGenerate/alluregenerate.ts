@@ -1,12 +1,8 @@
 /// <reference path="../node_modules/Agent.Tasks/definitions/vsts-task-lib.d.ts" />
 
 import tl = require('vsts-task-lib/task');
-import path = require('path');
 
-var allureRunner = tl.getInput('allureRunner', false);
-if(!allureRunner) {
-    allureRunner = require.resolve('allure-commadline/bin/allure');
-}
+var allureRunner = require.resolve('allure-commandline/bin/allure');
 var resultsDir = tl.getInput('resultsDir', true);
 var targetDir = tl.getInput('targetDir', true);
 var nodePath = tl.which('node', true);
@@ -23,13 +19,14 @@ allure.argString('generate');
 allure.argString('--output ' + targetDir);
 allure.argString(resultsDir);
 
-allure.exec()
-    .then(function(code) {
-        new tl.TestPublisher('Allure').publish(targetDir, true, "", "", "", true);
-        tl.exit(code);
-    })
-    .fail(function(err) {
-        console.error(err.message);
-        tl.debug('report generation failed');
-        tl.exit(1);
-    });
+var result = allure.execSync();
+
+tl.debug('Exit code: ' + result.code);
+tl.debug(result.stdout);
+tl.debug(result.stderr);
+
+if (!result.code) {
+    new tl.TestPublisher('Allure').publish(targetDir, true, "", "", "", true);
+}
+
+tl.exit(result.code);

@@ -18,9 +18,6 @@
   },
   "files": [
     {
-      "path": "node_modules/allure-commandline"
-    },
-    {
       "path": "AllureGenerate"
     }
   ],

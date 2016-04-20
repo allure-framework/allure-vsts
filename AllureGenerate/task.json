@@ -15,18 +15,11 @@
     "Patch": 0
   },
   "demands": [
+    "npm",
     "java"
   ],
   "minimumAgentVersion": "1.91.0",
   "inputs": [
-    {
-      "name": "allureRunner",
-      "type": "filePath",
-      "label": "Allure runner",
-      "defaultValue": "",
-      "required": false,
-      "helpMarkDown": "Path to allure-commandline executor"
-    },
     {
       "name": "resultsDir",
       "type": "filePath",
@@ -36,7 +29,7 @@
       "helpMarkDown": "Path test results"
     },
     {
-      "name": "resultsDir",
+      "name": "targetDir",
       "type": "filePath",
       "label": "Target directory",
       "defaultValue": "allure-report",
@@ -48,7 +41,8 @@
   "execution": {
     "Node": {
       "target": "alluregenerate.js",
-      "argumentFormat": ""
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
     }
   }
 }
