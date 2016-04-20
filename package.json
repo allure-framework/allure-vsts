@@ -7,7 +7,7 @@
     "package": "tfx extension create",
     "build": "tsc **/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "cd AllureGenerate && npm install"
+    "prepublish": "cd AllureGenerate && npm install && cd ../AllureReport && npm install"
   },
   "author": "",
   "license": "ISC",
