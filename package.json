@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "Agent.Tasks": "microsoft/vso-agent-tasks",
-    "tfx": "0.0.1",
+    "tfx-cli": "^0.3.19",
     "typescript": "^1.8.10"
   }
 }
