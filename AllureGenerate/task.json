@@ -1,8 +1,8 @@
 {
   "id": "5c975f9d-1c3a-469f-b7c2-8907bf3eacfb",
   "name": "AllureGenerate",
-  "friendlyName": "Allure Generate",
-  "description": "Generate Allure report from tests result",
+  "friendlyName": "Generate Allure Report",
+  "description": "Generates Allure report based on the test results",
   "helpMarkDown": "[More Information](https://github.com/allure-framework/allure-core/wiki)",
   "category": "Test",
   "visibility": [

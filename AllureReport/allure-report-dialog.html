@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Allure Report</title>
+
+    <script src="../node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
+
+    <script type="text/javascript">
+        VSS.init({ explicitNotifyLoaded: true, usePlatformScripts: true });
+
+        VSS.require(["VSS/Controls"], function (Controls) {
+            var buildNumber = VSS.getConfiguration().buildNumber;
+
+            document.getElementById('allure-report-iframe').onload = function () {
+                VSS.notifyLoadSucceeded();
+            }
+
+            document.getElementById('allure-report-iframe').src = "https://molecula-allure.azurewebsites.net/" + buildNumber + "/";
+        });
+    </script>
+
+    <style>
+        body { margin:0px;padding:0px;overflow:hidden }
+        iframe { overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px }
+    </style>
+</head>
+
+    <body>
+        <iframe id="allure-report-iframe" frameborder="0" height="100%" width="100%"></iframe>
+    </body>
+
+</html>

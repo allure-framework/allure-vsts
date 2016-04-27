@@ -1,9 +1,9 @@
 {
   "manifestVersion": 1,
-  "id": "allure-report",
-  "name": "Publish Allure report",
-  "version": "0.0.1",
-  "publisher": "molecula",
+  "id": "allure-test-reports",
+  "name": "Allure Test Reports",
+  "version": "0.0.2",
+  "publisher": "Molecula",
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"
@@ -13,8 +13,17 @@
   "categories": [
     "Test"
   ],
+  "content": {
+    "details": {
+      "path": "details.md"
+    }
+  },
+  "branding": {
+    "color": "#aaa",
+    "theme": "dark"
+  },
   "icons": {
-    "default": "extension-icon.png"
+    "default": "images/allure-logo.png"
   },
   "files": [
     {
@@ -22,6 +31,14 @@
     },
     {
       "path": "AllureReport",
+      "addressable": true
+    },
+    {
+      "path": "node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js",
+      "addressable": true
+    },
+    {
+      "path": "images",
       "addressable": true
     }
   ],
@@ -33,18 +50,33 @@
         "ms.vss-distributed-task.tasks"
       ],
       "properties": {
-        "name": "AllureGenerate"
+        "name": "AllureGenerate",
+        "description": "Generates Allure report based on the test results",
+        "icon": "images/allure-logo.png"
       }
     },
     {
       "id": "allure-report",
-      "type": "ms.vss-build-web.build-results-tab",
+      "type": "ms.vss-web.action",
+      "description": "Shows the Allure report for the selected build",
       "targets": [
-        "ms.vss-build-web.build-results-view"
+        "ms.vss-build-web.completed-build-menu"
       ],
       "properties": {
-        "name": "Allure Report",
-        "uri": "AllureReport/index.html"
+        "text": "Open Allure Report",
+        "title": "ms.vss-build-web.completed-build-menu",
+        "icon": "images/open-allure-report.png",
+        "group": "actions",
+        "uri": "AllureReport/index.html",
+        "registeredObjectId": "showAllureReport"
+      }
+    },
+    {
+      "id": "allure-report-dialog",
+      "type": "ms.vss-web.control",
+      "targets": [ ],
+      "properties": {
+        "uri": "AllureReport/allure-report-dialog.html"
       }
     }
   ]

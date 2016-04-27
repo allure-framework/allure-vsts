@@ -2,14 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Allure report</title>
-    <script src="node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
-    <script>
-        VSS.init({});
-        VSS.notifyLoadSucceeded();
-    </script>
+    <title>Contributions Guide</title>
 </head>
 <body>
-Here will be allure report somehow
+<div>Users will never see this page.</div>
+
+<script src="../node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
+
+<script>
+    var showAllureReportMenuProvider = (function () {
+        "use strict";
+        return {
+            showAllureReportInDialog: function(actionContext) {
+                VSS.getService("ms.vss-web.dialog-service").then(function (dialogSvc) {
+
+                    var extInfo = VSS.getExtensionContext();
+
+                    var dialogOptions = {
+                        title: "Allure Report",
+                        width: 1100,
+                        height: 800,
+                        buttons: null
+                    };
+
+                    var contributionConfig = {
+                        buildNumber: actionContext.buildNumber
+                    };
+
+                    dialogSvc.openDialog(extInfo.publisherId + "." + extInfo.extensionId + "." + "allure-report-dialog", dialogOptions, contributionConfig);
+                });
+            },
+            execute: function(actionContext) {
+                this.showAllureReportInDialog(actionContext);
+            }
+        };
+    }());
+
+    VSS.register("showAllureReport", function (context) {
+        return showAllureReportMenuProvider;
+    });
+
+    VSS.init({ usePlatformScripts: true, usePlatformStyles: true });
+</script>
 </body>
 </html>
