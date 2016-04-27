@@ -2,47 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contributions Guide</title>
+    <title>Action page</title>
 </head>
 <body>
 <div>Users will never see this page.</div>
-
-<script src="../node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
-
+<script src="node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
 <script>
-    var showAllureReportMenuProvider = (function () {
-        "use strict";
+    VSS.register("showAllureReport", function(context) {
         return {
-            showAllureReportInDialog: function(actionContext) {
-                VSS.getService("ms.vss-web.dialog-service").then(function (dialogSvc) {
-
+            execute: function(actionContext) {
+                VSS.getService("ms.vss-web.dialog-service").then(function(dialog) {
                     var extInfo = VSS.getExtensionContext();
-
                     var dialogOptions = {
                         title: "Allure Report",
                         width: 1100,
                         height: 800,
                         buttons: null
                     };
-
+                    var dialogId = extInfo.publisherId + "." + extInfo.extensionId + "." + "allure-report-dialog";
                     var contributionConfig = {
                         buildNumber: actionContext.buildNumber
                     };
-
-                    dialogSvc.openDialog(extInfo.publisherId + "." + extInfo.extensionId + "." + "allure-report-dialog", dialogOptions, contributionConfig);
+                    dialog.openDialog(dialogId, dialogOptions, contributionConfig);
                 });
-            },
-            execute: function(actionContext) {
-                this.showAllureReportInDialog(actionContext);
             }
         };
-    }());
-
-    VSS.register("showAllureReport", function (context) {
-        return showAllureReportMenuProvider;
     });
 
-    VSS.init({ usePlatformScripts: true, usePlatformStyles: true });
+    VSS.init({usePlatformScripts: true, usePlatformStyles: true});
 </script>
 </body>
 </html>
