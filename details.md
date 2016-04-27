@@ -1,6 +1,6 @@
 This extension allows you to generate and view Allure test reports right from the Visual Studio Team Services interface.
 
-Please note that due too some limitation in the current version of Team Services API the Allure Generate Build Step will only generate the Allure report and save it as a build artifact. To enable "Open Allure Report" option you will need to add additional build step to publish the report somewhere. For instance you can create a simple Azure Web App and upload reports there using Build Task extension like [FTP Upload](https://marketplace.visualstudio.com/items?itemName=januskamphansen.ftpupload-task). You website should support HTTPS.
+**Please note** that due too some limitation in the current version of Team Services API the Allure Generate Build Step will only generate the Allure report and save it as a build artifact. To enable "Open Allure Report" option you will need to add additional build step to publish the report somewhere. For instance you can create a simple Azure Web App and upload reports there using Build Task extension like [FTP Upload](https://marketplace.visualstudio.com/items?itemName=januskamphansen.ftpupload-task). You website should support HTTPS.
 
 When you have your website up and running we will use "https://[BaseUrl]/$(Build.BuildNumber)" to open a report for the corresponding build. You will need to set BaseUrl property on the Allure settings page in the Project settings:
 
@@ -42,3 +42,4 @@ During **report generation** (second step) XML files are transformed to HTML rep
 **Timeline** page shows in which moment of time every test case was executed and how long it was running.
 
 ![Allure Timeline Report](images/timeline.png)
+
