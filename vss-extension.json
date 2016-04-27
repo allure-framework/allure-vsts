@@ -22,6 +22,11 @@
     "color": "#68217a",
     "theme": "dark"
   },
+  "links": {
+    "learn": {
+      "uri": "https://github.com/allure-framework/allure-core"
+    }
+  },
   "icons": {
     "default": "images/allure-logo.png"
   },
