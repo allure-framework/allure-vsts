@@ -2,8 +2,9 @@
   "manifestVersion": 1,
   "id": "allure-test-reports",
   "name": "Allure Test Reports",
-  "version": "0.0.2",
+  "version": "1.0",
   "publisher": "Molecula",
+  "public": true,
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"
