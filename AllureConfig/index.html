@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Allure options</title>
+    <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/2.2.0/fabric.min.css">
+    <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/2.2.0/fabric.components.min.css">
+    <style type="text/css">
+        #myForm {
+            margin: 10px;
+        }
+        #error {
+            margin: 10px 0;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<script src="../node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
+<script>
+    VSS.init({explicitNotifyLoaded: true, usePlatformScripts: true});
+    VSS.ready(function() {
+        VSS.getService(VSS.ServiceIds.ExtensionData).then(function(dataService) {
+            dataService.getValue('baseUrl', {scopeType: 'Default'}).then(function(value) {
+                document.querySelector('[name="baseUrl"]').value = value;
+                VSS.notifyLoadSucceeded();
+            });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('myForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var error = document.getElementById('error');
+            var value = document.querySelector('[name="baseUrl"]').value;
+            if(value.match(/^https:\/\//)) {
+                VSS.getService(VSS.ServiceIds.ExtensionData).then(function(dataService) {
+                    dataService.setValue('baseUrl', value, {scopeType: 'Default'})
+                            .then(function() {
+                                error.innerText = '';
+                            }, function(e) {
+                                error.innerText = e.responseText;
+                            });
+                });
+            } else {
+                error.innerText = 'Base url must be url starting with "https"'
+            }
+        })
+    })
+</script>
+<form id="myForm">
+    <div class="ms-TextField">
+        <label class="ms-Label" for="baseUrl">Base url</label>
+        <input class="ms-TextField-field" id="baseUrl" name="baseUrl" type="url">
+        <span class="ms-TextField-description">Base url where you host your Allure reports</span>
+    </div>
+    <button class="ms-Button ms-Button--primary">
+        <span class="ms-Button-label">Save</span>
+    </button>
+    <div id="error"></div>
+</form>
+</body>
+</html>

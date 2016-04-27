@@ -2,16 +2,19 @@
 <html>
 <head>
     <title>Allure Report</title>
-    <script src="node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
+    <script src="../node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
     <script type="text/javascript">
         VSS.init({explicitNotifyLoaded: true, usePlatformScripts: true});
         VSS.ready(function() {
             var buildNumber = VSS.getConfiguration().buildNumber;
-            var iframe = document.getElementById('allure-report-iframe');
-            iframe.src = "https://molecula-allure.azurewebsites.net/" + buildNumber + "/";
-            VSS.notifyLoadSucceeded();
-            iframe.onload = function() {
-            }
+            VSS.getService(VSS.ServiceIds.ExtensionData).then(function(dataService) {
+                dataService.getValue('baseUrl', {scopeType: 'Default'}).then(function(baseUrl) {
+                    baseUrl = baseUrl.replace(/\/$/, '');
+                    var iframe = document.getElementById('allure-report-iframe');
+                    iframe.src = baseUrl + '/' + buildNumber + "/";
+                    VSS.notifyLoadSucceeded();
+                });
+            });
         });
     </script>
 

@@ -39,7 +39,15 @@
       "addressable": true
     },
     {
+      "path": "AllureConfig",
+      "addressable": true
+    },
+    {
       "path": "images",
+      "addressable": true
+    },
+    {
+      "path": "node_modules/vss-web-extension-sdk",
       "addressable": true
     }
   ],
@@ -78,6 +86,17 @@
       "targets": [ ],
       "properties": {
         "uri": "AllureReport/allure-report-dialog.html"
+      }
+    },
+    {
+      "id": "allure-report-config",
+      "type": "ms.vss-web.hub",
+      "targets": [
+        "ms.vss-web.project-admin-hub-group"
+      ],
+      "properties": {
+        "name": "Allure",
+        "uri": "AllureConfig/index.html"
       }
     }
   ]
