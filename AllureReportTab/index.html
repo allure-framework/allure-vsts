@@ -15,7 +15,7 @@
                     console.log(build);
                     VSS.getService(VSS.ServiceIds.ExtensionData).then(function(dataService) {
                         dataService.getValue('baseUrl', {scopeType: 'Default'}).then(function(baseUrl) {
-                            showReport(baseUrl, buildNumber);
+                            showReport(baseUrl, build.buildNumber);
                             VSS.notifyLoadSucceeded();
                         });
                     });
