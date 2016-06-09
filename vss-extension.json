@@ -90,6 +90,18 @@
       }
     },
     {
+        "id": "allure-report-tab",
+        "type": "ms.vss-build-web.build-results-tab",
+        "description": "Tab to display Allure report after build",
+        "targets": [
+            "ms.vss-build-web.build-results-view"
+        ],
+        "properties": {
+            "name": "Allure report",
+             "uri": "AllureReportTab/index.html"
+        }
+    },
+    {
       "id": "allure-report-config",
       "type": "ms.vss-web.hub",
       "targets": [

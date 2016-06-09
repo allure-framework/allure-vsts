@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <script src="../node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
+
+    <script type="text/javascript">
+        VSS.init({
+            usePlatformScripts: true
+        });
+
+        VSS.ready(function() {
+            var sharedConfig = VSS.getConfiguration();
+            var vsoContext = VSS.getWebContext();
+            if(sharedConfig) {
+                sharedConfig.onBuildChanged(function(build) {
+                    console.log(build);
+                    VSS.getService(VSS.ServiceIds.ExtensionData).then(function(dataService) {
+                        dataService.getValue('baseUrl', {scopeType: 'Default'}).then(function(baseUrl) {
+                            showReport(baseUrl, buildNumber);
+                            VSS.notifyLoadSucceeded();
+                        });
+                    });
+                });
+            }
+        });
+
+        function showReport(baseUrl, buildNumber) {
+            baseUrl = baseUrl.replace(/\/$/, '');
+            var iframe = document.getElementById('allure-report-iframe');
+            iframe.src = baseUrl + '/' + buildNumber + "/";
+        }
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden
+        }
+
+        iframe {
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0
+        }
+    </style>
+</head>
+
+<body>
+    <iframe id="allure-report-iframe" frameborder="0" height="100%" width="100%"></iframe>
+</body>
+</html>
