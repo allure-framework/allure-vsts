@@ -6,7 +6,7 @@
   "helpMarkDown": "[More Information](https://github.com/allure-framework/allure-core/wiki)",
   "category": "Test",
   "visibility": [
-    "Test"
+    "Build"
   ],
   "author": "Molecula",
   "version": {
@@ -32,7 +32,7 @@
       "name": "targetDir",
       "type": "filePath",
       "label": "Target directory",
-      "defaultValue": "allure-report",
+      "defaultValue": "allure-report/$(Build.BuildNumber)",
       "required": true,
       "helpMarkDown": "Directory to write test report"
     }

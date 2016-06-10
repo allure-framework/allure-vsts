@@ -2,10 +2,22 @@ This extension allows you to generate and view Allure test reports right from th
 
 **Please note** that due too some limitation in the current version of Team Services API the Allure Generate Build Step will only generate the Allure report and save it as a build artifact. To enable "Open Allure Report" option you will need to add additional build step to publish the report somewhere. For instance you can create a simple Azure Web App and upload reports there using Build Task extension like [FTP Upload](https://marketplace.visualstudio.com/items?itemName=januskamphansen.ftpupload-task). You website should support HTTPS.
 
-When you have your website up and running we will use url like https://[BaseUrl]/$(Build.BuildNumber) to open a report for the corresponding build. You will need to set BaseUrl property on the Allure settings page in the Project settings:
+**Please note** If you use Azure Website or IIS in general some file types used by Allure are not enabled by default. Please, add mimetypes as shown below to your web.config in order to enable support of .json and .woff file types.
+
+```xml
+<configuration>
+    <system.webServer>
+        <staticContent>
+            <mimeMap fileExtension=".json" mimeType="application/json" />
+            <mimeMap fileExtension=".woff" mimeType="application/x-font-woff" />
+     </staticContent>
+    </system.webServer>
+</configuration> 
+```
+
+When you have your website up and running we will use url like [BaseUrl]/$(Build.BuildNumber) to open a report for the corresponding build. You will need to set BaseUrl property on the Allure settings page in the Project settings:
 
 ![Allure Reports Settings](images/allure-reports-baseurl.png)
-
 
 ## Why to use Allure
 
